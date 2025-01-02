@@ -15,6 +15,7 @@ if(response.status === 404){
 else{
     
     var data = await response.json();
+    console.log(data)
 
   
 
