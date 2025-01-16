@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Dynamic password generator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1> Generate a<br> <span>Dyanamic Password </span> <br></h1>
+            <div class="display">
+                <input type="text" id="password" placeholder="enter password">
+                <img onclick="copyPassword()" src="images/copy.png">
+            </div>
+            <div class="elements">
+
+                <div class="range">
+                    <input type="range" min="6" max="100" value ="6" class="cursor-pointer">
+                    <label>Length: <span id="value"> 6</span> </label>
+                </div>
+
+                <div class="numbers">
+                    <input type="checkbox" id="numberInput">
+                    <label>Numbers</label>
+                </div>
+
+                <div class="charecters">
+                    <input type="checkbox" id="charInput">
+                    <label>charecters</label>
+                </div>
+            </div>
+            <div class="button">
+                <button onclick="passwordGenerator()" ><img src="images/generate.png">Generate password</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
+
