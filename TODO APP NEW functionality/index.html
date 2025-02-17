@@ -1,0 +1,117 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="style.css">
+      <title>To-Do List App</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="todo-app">
+                <h2>To-Do List<img src="images/icon.png"></h2>
+
+                <div class="row" >
+                    <input type="text" id="input-box" placeholder="Add your text">
+                    <button onclick="addTask()">Add</button>
+                </div>
+
+                <ul id="list-container">
+                    <!-- <li class="checked">Task 1</li>
+                    <li>Task 2</li>
+                    <li>Task 3</li> -->
+                </ul>
+
+            </div>
+        </div>
+
+        <script src="script.js" ></script>
+    </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .completed {
+            text-decoration: line-through;
+        }
+        button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("taskInput");
+            let taskText = taskInput.value.trim();
+            if (taskText === "") return;
+            
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            span.textContent = taskText;
+            
+            let toggleBtn = document.createElement("button");
+            toggleBtn.textContent = "Toggle";
+            toggleBtn.onclick = function () {
+                span.classList.toggle("completed");
+            };
+            
+            let editBtn = document.createElement("button");
+            editBtn.textContent = "Edit";
+            editBtn.onclick = function () {
+                let newText = prompt("Edit task:", span.textContent);
+                if (newText !== null) {
+                    span.textContent = newText;
+                }
+            };
+            
+            let removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.onclick = function () {
+                li.remove();
+            };
+            
+            li.appendChild(span);
+            li.appendChild(toggleBtn);
+            li.appendChild(editBtn);
+            li.appendChild(removeBtn);
+            document.getElementById("taskList").appendChild(li);
+            
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html> -->
