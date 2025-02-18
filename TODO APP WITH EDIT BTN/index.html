@@ -1,0 +1,177 @@
+<html>
+    <head>
+      <title>To-Do List App</title>
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins' ,sans-serif;
+    box-sizing: border-box;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg , #153677 ,#4e085f);
+    padding: 10px;
+}
+.todo-app{
+    width: 100%;
+    max-width: 540px;
+    background: #fff;
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+}
+.todo-app h2{
+    color: #002765;
+    display: flex;
+    align-items:center;
+    margin-bottom: 20px;
+}
+.todo-app img{
+    width: 30px;
+    margin-left: 10px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius:30px;
+    padding-left: 20px;
+}
+input{
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-weight: 14px;
+}
+button{
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background: #ff5945;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-left: 5px;
+}
+ul li{
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul li::before{
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url('images/unchecked.png');
+    background-size: cover;
+    background-position: center;
+    top: 12px;
+    left: 8px;
+}
+ul li.checked{
+    color: #555;
+    text-decoration: line-through;
+}
+ul li.checked::before{
+    background-image: url(images/checked.png);
+}
+.task-buttons{
+    display: flex;
+    gap: 5px;
+}
+</style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="todo-app">
+                <h2>To-Do List<img src="images/icon.png"></h2>
+                <div class="row">
+                    <input type="text" id="input-box" placeholder="Add your text">
+                    <button onclick="addTask()">Add</button>
+                </div>
+                <ul id="list-container"></ul>
+            </div>
+        </div>
+
+        <script>
+            const inputBox = document.getElementById("input-box");
+            const listContainer = document.getElementById("list-container");
+
+            function addTask() {
+                if (inputBox.value === "") {
+                    alert("You must write something");
+                }
+                 else {
+                    let li = document.createElement("li");
+                    let taskText = document.createElement("span");
+                    taskText.textContent = inputBox.value;
+                    li.appendChild(taskText);
+
+                    let taskButtons = document.createElement("div");
+                    taskButtons.classList.add("task-buttons");
+                    
+                    let editBtn = document.createElement("button");
+                    editBtn.textContent = "Edit";
+                    editBtn.onclick = function() {
+                        let input = document.createElement("input");
+                        input.type = "text";
+                        input.value = taskText.textContent;
+                        taskText.replaceWith(input);
+                        input.focus();
+                        input.addEventListener("blur", () => {
+                            taskText.textContent = input.value;
+                            input.replaceWith(taskText);
+                            saveData();
+                        });
+                    };
+
+                    let deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "×";
+                    deleteBtn.onclick = function() {
+                        li.remove();
+                        saveData();
+                    };
+
+                    taskButtons.appendChild(editBtn);
+                    taskButtons.appendChild(deleteBtn);
+                    li.appendChild(taskButtons);
+                    listContainer.appendChild(li);
+                }
+                inputBox.value = "";
+                saveData();
+            }
+
+            listContainer.addEventListener("click", (e) => {
+                if (e.target.tagName === "LI") {
+                    e.target.classList.toggle("checked");
+                    saveData();
+                }
+            }, false);
+
+            function saveData() {
+                localStorage.setItem("data", listContainer.innerHTML);
+            }
+
+            function showTask() {
+                listContainer.innerHTML = localStorage.getItem("data");
+            }
+            
+            showTask();
+        </script>
+    </body>
+</html>
